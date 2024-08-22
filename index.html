@@ -7,32 +7,12 @@
     <script>
       // 텍스트 복사 함수
       function copyText() {
-        const descVal = document.getElementById("desc");
-        descVal.select();
-
-        try {
-          const successful = document.execCommand("copy");
-          if (successful) {
-            alert("복사가 완료되었습니다.");
-          } else {
-            alert("복사에 실패했습니다.");
-          }
-        } catch (err) {
-          alert("복사 중 오류가 발생했습니다.");
-        }
-        // 복사 후 창 닫기 시도
-        window.location.href = "kakaotalk://inappbrowser/close";
+        window.location.href =
+          "http://plus.kakao.com/talk/bot/@parkmerrykwon/%EC%B6%95%ED%95%98%ED%95%B4";
       }
 
-      // 페이지 로드 시 실행될 함수
-      function onLoad() {
-        window.location.href = "https://qr.kakaopay.com/Ej80XSEaq";
-      }
+      window.onload = copyText;
     </script>
   </head>
-  <body>
-    <input id="desc" name="desc" value="110235742290" hidden />
-    <button onclick="copyText()">계좌번호 복사하기</button>
-    <button onclick="onLoad()">카카오페이로 마음 전하기</button>
-  </body>
+  <body></body>
 </html>
