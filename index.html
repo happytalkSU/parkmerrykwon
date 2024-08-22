@@ -7,33 +7,36 @@
     <script>
       // 텍스트 복사 함수
       function copyText() {
-        const textToCopy = "110235742290";
+        const descVal = document.getElementById("desc");
+        descVal.select();
 
-        // Clipboard API를 사용하여 텍스트를 클립보드에 복사
-        navigator.clipboard
-          .writeText(textToCopy)
-          .then(function () {
-            // 복사가 성공했을 때
-            window.close();
-            window.location.href = "kakaotalk://inappbrowser/close"; // 창 닫기
-          })
-          .catch(function (error) {
-            // 복사가 실패했을 때
-            window.close();
-            alert("복사에 실패했습니다. 수동으로 복사해주세요.");
-            alert("됨?");
-            window.location.href = "kakaotalk://inappbrowser/close"; // 창 닫기
-          });
+        try {
+          const successful = document.execCommand("copy");
+          if (successful) {
+            alert("복사가 완료되었습니다.");
+          } else {
+            alert("복사에 실패했습니다.");
+          }
+        } catch (err) {
+          alert("복사 중 오류가 발생했습니다.");
+        }
+
+        // 복사 후 창 닫기 시도
+        window.location.href = "kakaotalk://inappbrowser/close";
       }
 
       // 페이지 로드 시 실행될 함수
       function onLoad() {
-        copyText(); // 텍스트 복사 실행
+        setTimeout(copyText, 500); // 500ms 후에 복사 시도
       }
 
-      // 페이지가 로드되면 onLoad 함수 호출
       window.onload = onLoad;
     </script>
   </head>
-  <body></body>
+  <body>
+    <textarea rows="6" id="desc" class="desc" name="desc">
+110235742290</textarea
+    >
+    <button onclick="copyText()">복사하기</button>
+  </body>
 </html>
