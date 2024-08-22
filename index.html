@@ -10,7 +10,16 @@
         const descVal = document.getElementById("desc");
         descVal.select();
 
-        const successful = document.execCommand("copy");
+        try {
+          const successful = document.execCommand("copy");
+          if (successful) {
+            alert("복사가 완료되었습니다.");
+          } else {
+            alert("복사에 실패했습니다.");
+          }
+        } catch (err) {
+          alert("복사 중 오류가 발생했습니다.");
+        }
         // 복사 후 창 닫기 시도
         window.location.href = "kakaotalk://inappbrowser/close";
       }
